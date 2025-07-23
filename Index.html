@@ -1,0 +1,3034 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fahmi Thrifting</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #f8f5f2;
+            color: #333;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #6e45e2 0%, #89d4cf 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid #ff6b6b;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 600;
+            font-family: 'Dancing Script', cursive;
+            animation: fadeIn 1s ease;
+            color: white;
+        }
+        
+        .logo span {
+            background: linear-gradient(45deg, #ff6b6b, #6e45e2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-right: 5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul li a i {
+            margin-right: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover i {
+            transform: scale(1.2) rotate(10deg);
+            color: #ffd166;
+        }
+        
+        nav ul li a:hover {
+            color: #ffd166;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #ffd166;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Main Content Styles */
+        main {
+            margin-top: 80px;
+            min-height: calc(100vh - 160px);
+        }
+        
+        .page {
+            display: none;
+            padding: 40px 0;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #3a5a78;
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #6e45e2, #89d4cf);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Home Page Styles */
+        .hero {
+            background: linear-gradient(rgba(58, 90, 120, 0.8), rgba(58, 90, 120, 0.8)), url('https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            animation: slideIn 1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(110, 69, 226, 0.1) 0%, transparent 70%);
+            animation: pulse 8s infinite linear;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease;
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            animation: fadeIn 2s ease;
+            position: relative;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #6e45e2, #89d4cf);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            animation: fadeIn 2.5s ease;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(110, 69, 226, 0.4);
+        }
+        
+        .btn:hover {
+            background: linear-gradient(45deg, #89d4cf, #6e45e2);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(45deg);
+            transition: all 0.3s;
+        }
+        
+        .btn:hover::after {
+            left: 100%;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.4s;
+            border: 1px solid #eaeaea;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-card i {
+            font-size: 50px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+            background: linear-gradient(45deg, #6e45e2, #89d4cf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .feature-card:hover i {
+            transform: scale(1.2) rotate(15deg);
+            animation: bounce 0.5s ease;
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #3a5a78;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Game Section */
+        .game-section {
+            margin-top: 60px;
+            text-align: center;
+        }
+        
+        .game-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .game-card {
+            width: 200px;
+            height: 200px;
+            background: white;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .game-card i {
+            font-size: 50px;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #6e45e2, #89d4cf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s;
+        }
+        
+        .game-card:hover i {
+            transform: scale(1.3) rotate(15deg);
+            animation: bounce 0.5s ease;
+        }
+        
+        .game-card h4 {
+            font-size: 18px;
+            color: #3a5a78;
+            margin-bottom: 10px;
+        }
+        
+        .game-card p {
+            font-size: 14px;
+            color: #666;
+            padding: 0 15px;
+        }
+        
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(110, 69, 226, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
+        
+        .game-card:hover::before {
+            left: 100%;
+        }
+        
+        /* Flash Sale Countdown */
+        .flash-sale-container {
+            background: linear-gradient(45deg, #ff0000, #ff6b6b);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+            animation: flash 2s infinite;
+        }
+        
+        .flash-sale-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 5px;
+            min-width: 50px;
+        }
+        
+        .countdown-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+        
+        /* Spin Wheel Game */
+        .wheel-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            display: none;
+        }
+        
+        .wheel-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .wheel {
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 10px solid #fff;
+            box-shadow: 0 0 0 10px #6e45e2, 0 0 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .wheel-item {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            transform-origin: 100% 100%;
+            left: 0;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            font-size: 14px;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        
+        .wheel-pointer {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 40px solid #ff6b6b;
+            z-index: 10;
+        }
+        
+        .spin-btn {
+            background: linear-gradient(45deg, #6e45e2, #89d4cf);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        
+        .spin-btn:hover {
+            background: linear-gradient(45deg, #89d4cf, #6e45e2);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Mystery Box Game */
+        .mystery-box-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            display: none;
+        }
+        
+        .mystery-box-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .box-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .mystery-box {
+            background: #f0f0f0;
+            border-radius: 10px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mystery-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mystery-box i {
+            font-size: 30px;
+            color: #6e45e2;
+        }
+        
+        .mystery-box.opened {
+            background: linear-gradient(45deg, #6e45e2, #89d4cf);
+        }
+        
+        .mystery-box.opened i {
+            color: white;
+        }
+        
+        .mystery-box-prize {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: white;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .mystery-box.opened .mystery-box-prize {
+            opacity: 1;
+        }
+        
+        .mystery-box-prize i {
+            font-size: 30px;
+            margin-bottom: 5px;
+        }
+        
+        .mystery-box-prize span {
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .prize-display {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(110, 69, 226, 0.1);
+            border-radius: 10px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Daily Mission Game */
+        .daily-mission-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            display: none;
+        }
+        
+        .daily-mission-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .mission-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: left;
+            position: relative;
+            border-left: 4px solid #6e45e2;
+        }
+        
+        .mission-title {
+            font-weight: 600;
+            color: #3a5a78;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .mission-title i {
+            margin-right: 10px;
+            color: #6e45e2;
+        }
+        
+        .mission-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .mission-progress {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            flex-grow: 1;
+            height: 8px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-right: 10px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6e45e2, #89d4cf);
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        .progress-text {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .mission-reward {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: #6e45e2;
+            font-weight: 600;
+        }
+        
+        .mission-reward i {
+            margin-right: 5px;
+        }
+        
+        .mission-complete {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #25D366;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: bold;
+            display: none;
+        }
+        
+        /* Guess Item Game */
+        .guess-item-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            display: none;
+        }
+        
+        .guess-item-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .claw-machine {
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+            background: url('https://images.unsplash.com/photo-1578632767115-351597cf2477?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80') center/cover;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            border: 5px solid #3a5a78;
+        }
+        
+        .claw {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: all 0.5s;
+        }
+        
+        .claw-line {
+            position: absolute;
+            width: 2px;
+            height: 250px;
+            background: #333;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .prize-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .prize-item {
+            width: 80px;
+            height: 80px;
+            background: #f8f5f2;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .prize-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .prize-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .prize-item .prize-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 10px;
+            padding: 3px;
+            text-align: center;
+        }
+        
+        /* Products Page Styles */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s;
+            border: 1px solid #eaeaea;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-card::before {
+            content: 'FLASH SALE!';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(45deg, #ff0000, #ff6b6b);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 1;
+            animation: flash 2s infinite;
+        }
+        
+        .product-img {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 20px;
+            position: relative;
+        }
+        
+        .product-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #3a5a78;
+        }
+        
+        .product-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 14px;
+            margin-right: 8px;
+        }
+        
+        .discounted-price {
+            color: #ff0000;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        .discount-badge {
+            background: #ff6b6b;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        
+        .flash-sale-tag {
+            display: block;
+            text-align: center;
+            background: linear-gradient(45deg, #ff0000, #ff6b6b);
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            animation: flash 2s infinite;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .product-btn {
+            flex: 1;
+            padding: 8px 0;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .order-btn {
+            background: linear-gradient(45deg, #6e45e2, #89d4cf);
+            color: white;
+            border: none;
+        }
+        
+        .order-btn:hover {
+            background: linear-gradient(45deg, #89d4cf, #6e45e2);
+            color: white;
+        }
+        
+        .ask-btn {
+            background-color: #3a5a78;
+            color: white;
+            border: 1px solid #3a5a78;
+        }
+        
+        .ask-btn:hover {
+            background-color: white;
+            color: #3a5a78;
+        }
+        
+        /* Review Section */
+        .reviews-container {
+            margin-top: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid #eaeaea;
+        }
+        
+        .review-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 3px solid #6e45e2;
+        }
+        
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid #6e45e2;
+        }
+        
+        .review-name {
+            font-weight: 600;
+            color: #3a5a78;
+        }
+        
+        .review-rating {
+            color: #ffd166;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        
+        .review-text {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .review-date {
+            font-size: 12px;
+            color: #888;
+            text-align: right;
+        }
+        
+        /* Form Ulasan */
+        .review-form {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-top: 30px;
+            border: 1px solid #eaeaea;
+        }
+        
+        .review-form h3 {
+            font-size: 24px;
+            color: #3a5a78;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #3a5a78;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .rating-stars {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .rating-stars i {
+            font-size: 24px;
+            color: #ddd;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .rating-stars i:hover,
+        .rating-stars i.active {
+            color: #ffd166;
+        }
+        
+        .submit-review {
+            background: linear-gradient(45deg, #6e45e2, #89d4cf);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(110, 69, 226, 0.4);
+        }
+        
+        .submit-review:hover {
+            background: linear-gradient(45deg, #89d4cf, #6e45e2);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* About Page Styles */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .about-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .about-img {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            height: 300px;
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+        
+        .about-text {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid #eaeaea;
+        }
+        
+        .about-text h2 {
+            text-align: left;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .about-text h2::after {
+            left: 0;
+            transform: none;
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: #555;
+        }
+        
+        .journey {
+            margin-top: 40px;
+        }
+        
+        .journey h3 {
+            font-size: 24px;
+            color: #3a5a78;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #6e45e2, #89d4cf);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .timeline-date {
+            position: absolute;
+            left: -30px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(45deg, #6e45e2, #89d4cf);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+        }
+        
+        .timeline-content h4 {
+            font-size: 18px;
+            color: #3a5a78;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-content p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(110, 69, 226, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .stat-item:hover {
+            background: rgba(110, 69, 226, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #6e45e2, #89d4cf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Order Page Styles */
+        .order-form {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            max-width: 800px;
+            margin: 40px auto 0;
+            border: 1px solid #eaeaea;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #3a5a78;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #6e45e2;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(110, 69, 226, 0.2);
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .satisfaction-rating {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        
+        .rating-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        
+        .rating-option:hover {
+            background: rgba(110, 69, 226, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .rating-emoji {
+            font-size: 30px;
+            margin-bottom: 5px;
+            transition: all 0.3s;
+        }
+        
+        .rating-option:hover .rating-emoji {
+            transform: scale(1.2);
+            animation: bounce 0.5s ease;
+        }
+        
+        .rating-option input[type="radio"] {
+            display: none;
+        }
+        
+        .rating-option input[type="radio"]:checked + .rating-emoji {
+            transform: scale(1.3);
+            text-shadow: 0 0 10px rgba(110, 69, 226, 0.5);
+        }
+        
+        .rating-option input[type="radio"]:checked ~ span {
+            color: #6e45e2;
+            font-weight: bold;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, #6e45e2, #89d4cf);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+            display: block;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(110, 69, 226, 0.4);
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(45deg, #89d4cf, #6e45e2);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Contact Page Styles */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .contact-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.4s;
+            border: 1px solid #eaeaea;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .contact-card i {
+            font-size: 40px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        .contact-card:hover i {
+            transform: scale(1.2) rotate(15deg);
+            animation: bounce 0.5s ease;
+        }
+        
+        .contact-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #3a5a78;
+        }
+        
+        .contact-card a {
+            color: #3a5a78;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+        
+        .contact-card a:hover {
+            color: #6e45e2;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        /* WhatsApp - Hijau */
+        .whatsapp-icon {
+            background: #25D366;
+            color: white;
+        }
+        
+        .whatsapp-icon:hover {
+            background: #128C7E;
+            transform: translateY(-5px) rotate(10deg);
+        }
+        
+        /* Instagram - Merah */
+        .instagram-icon {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+        }
+        
+        .instagram-icon:hover {
+            background: linear-gradient(45deg, #bc1888, #cc2366, #dc2743, #e6683c, #f09433);
+            transform: translateY(-5px) rotate(10deg);
+        }
+        
+        /* Email - Biru & Merah */
+        .email-icon {
+            background: linear-gradient(45deg, #4285F4, #EA4335);
+            color: white;
+        }
+        
+        .email-icon:hover {
+            background: linear-gradient(45deg, #EA4335, #4285F4);
+            transform: translateY(-5px) rotate(10deg);
+        }
+        
+        /* Lokasi - Merah */
+        .location-icon {
+            background: #FF0000;
+            color: white;
+        }
+        
+        .location-icon:hover {
+            background: #CC0000;
+            transform: translateY(-5px) rotate(10deg);
+        }
+        
+        .map-container {
+            margin-top: 40px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid #eaeaea;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(135deg, #6e45e2 0%, #89d4cf 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #3a5a78, #ff6b6b);
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 600;
+            font-family: 'Dancing Script', cursive;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-logo span {
+            background: linear-gradient(45deg, #ff6b6b, #6e45e2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-right: 5px;
+        }
+        
+        .copyright {
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-gallery {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .about-text h2 {
+                text-align: center;
+            }
+            
+            .about-text h2::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .satisfaction-rating {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .game-card {
+                width: 150px;
+                height: 150px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .order-form {
+                padding: 20px;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .game-card {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <span>Treasures</span>Thrifting
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link" data-page="home"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a href="#" class="nav-link" data-page="products"><i class="fas fa-tshirt"></i> Produk</a></li>
+                    <li><a href="#" class="nav-link" data-page="about"><i class="fas fa-info-circle"></i> Tentang</a></li>
+                    <li><a href="#" class="nav-link" data-page="order"><i class="fas fa-shopping-cart"></i> Pesan</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact"><i class="fas fa-phone-alt"></i> Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Page -->
+        <section class="page active" id="home">
+            <div class="container">
+                <div class="hero">
+                    <h1>Fashion Man: Gaya Elegan dengan Harga Terjangkau</h1>
+                    <p>Temukan koleksi pakaian pria berkualitas premium dengan harga yang ramah di kantong</p>
+                    <a href="#" class="btn nav-link" data-page="products">Jelajahi Koleksi</a>
+                </div>
+                
+                <h2>Mengapa Memilih Kami?</h2>
+                
+                <div class="features">
+                    <div class="feature-card">
+                        <i class="fas fa-tags"></i>
+                        <h3>Harga Kompetitif</h3>
+                        <p>Kami menawarkan produk berkualitas dengan harga yang sangat terjangkau untuk semua kalangan</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-star"></i>
+                        <h3>Kualitas Premium</h3>
+                        <p>Setiap produk melalui proses kurasi ketat untuk memastikan kualitas terbaik untuk Anda</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-award"></i>
+                        <h3>Garansi Kepuasan</h3>
+                        <p>Kami menjamin kepuasan Anda atau uang kembali tanpa pertanyaan</p>
+                    </div>
+                </div>
+                
+                <!-- Game Section -->
+                <div class="game-section">
+                    <h2>Game Thrifting Seru!</h2>
+                    <p style="text-align: center; margin-bottom: 30px;">Mainkan game kami untuk mendapatkan voucher diskon spesial</p>
+                    
+                    <div class="game-container">
+                        <div class="game-card" id="spin-wheel-game">
+                            <i class="fas fa-trophy"></i>
+                            <h4>Spin Wheel</h4>
+                            <p>Putar roda keberuntungan untuk mendapatkan diskon spesial</p>
+                        </div>
+                        <div class="game-card" id="mystery-box-game">
+                            <i class="fas fa-gift"></i>
+                            <h4>Mystery Box Belanja</h4>
+                            <p>Buka kotak misteri setelah belanja minimal Rp50.000</p>
+                        </div>
+                        <div class="game-card" id="guess-item-game">
+                            <i class="fas fa-gamepad"></i>
+                            <h4>Guess Item</h4>
+                            <p>Tebak harga produk untuk mendapatkan diskon</p>
+                        </div>
+                        <div class="game-card" id="daily-mission-game">
+                            <i class="fas fa-tasks"></i>
+                            <h4>Daily Mission</h4>
+                            <p>Selesaikan misi harian untuk mendapatkan reward</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Page -->
+        <section class="page" id="products">
+            <div class="container">
+                <h2>Koleksi Eksklusif Kami</h2>
+                <p style="text-align: center; margin-bottom: 30px;">Temukan gaya yang sempurna untuk setiap kesempatan</p>
+                
+                <div class="flash-sale-container">
+                    <div class="flash-sale-title">FLASH SALE! Diskon hingga 70%</div>
+                    <div class="countdown">
+                        <div class="countdown-item">
+                            <span id="hours">12</span>
+                            <div class="countdown-label">Jam</div>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="minutes">30</span>
+                            <div class="countdown-label">Menit</div>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="seconds">45</span>
+                            <div class="countdown-label">Detik</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="products">
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Kaos Distro Pria">
+                        </div>
+                        <div class="product-info">
+                            <h3>Kaos Distro Pria</h3>
+                            <p>Nyaman untuk aktivitas sehari-hari dengan berbagai pilihan warna. Bahan katun combed premium yang lembut dan menyerap keringat.</p>
+                            <div class="product-price">
+                                <span class="original-price">Rp 80.000</span>
+                                <span class="discounted-price">Rp 45.000</span>
+                                <span class="discount-badge">-44%</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="product-btn order-btn">Pesan</button>
+                                <button class="product-btn ask-btn">Tanya Harga</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Kemeja Pria">
+                        </div>
+                        <div class="product-info">
+                            <h3>Kemeja Pria</h3>
+                            <p>Elegant untuk acara formal atau santai dengan bahan berkualitas tinggi yang tidak mudah kusut dan nyaman dipakai seharian.</p>
+                            <div class="product-price">
+                                <span class="original-price">Rp 150.000</span>
+                                <span class="discounted-price">Rp 85.000</span>
+                                <span class="discount-badge">-43%</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="product-btn order-btn">Pesan</button>
+                                <button class="product-btn ask-btn">Tanya Harga</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Hoodie Pria">
+                        </div>
+                        <div class="product-info">
+                            <h3>Hoodie Pria</h3>
+                            <p>Hangat dan stylish untuk musim dingin dengan berbagai model. Bahan fleece premium yang lembut dan nyaman.</p>
+                            <div class="product-price">
+                                <span class="original-price">Rp 120.000</span>
+                                <span class="discounted-price">Rp 75.000</span>
+                                <span class="discount-badge">-38%</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="product-btn order-btn">Pesan</button>
+                                <button class="product-btn ask-btn">Tanya Harga</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Jaket Pria">
+                        </div>
+                        <div class="product-info">
+                            <h3>Jaket Pria</h3>
+                            <p>Melindungi dari cuaca dengan gaya yang trendi dan modern. Bahan tahan air dengan jahitan kuat dan presisi.</p>
+                            <div class="product-price">
+                                <span class="original-price">Rp 100.000</span>
+                                <span class="discounted-price">Rp 70.000</span>
+                                <span class="discount-badge">-30%</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="product-btn order-btn">Pesan</button>
+                                <button class="product-btn ask-btn">Tanya Harga</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Celana Pria">
+                        </div>
+                        <div class="product-info">
+                            <h3>Celana Pria</h3>
+                            <p>Berbagai model dari formal hingga casual untuk semua kesempatan. Bahan berkualitas dengan potongan yang pas di badan.</p>
+                            <div class="product-price">
+                                <span class="original-price">Rp 120.000</span>
+                                <span class="discounted-price">Rp 65.000</span>
+                                <span class="discount-badge">-46%</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="product-btn order-btn">Pesan</button>
+                                <button class="product-btn ask-btn">Tanya Harga</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Sepatu Pria">
+                        </div>
+                        <div class="product-info">
+                            <h3>Sepatu Pria</h3>
+                            <p>Nyaman dipakai seharian dengan desain yang stylish. Sol karet yang tahan lama dan empuk untuk kenyamanan maksimal.</p>
+                            <div class="product-price">
+                                <span class="original-price">Rp 284.000</span>
+                                <span class="discounted-price">Rp 110.000</span>
+                                <span class="discount-badge">-61%</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="product-btn order-btn">Pesan</button>
+                                <button class="product-btn ask-btn">Tanya Harga</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Tas Gunung">
+                        </div>
+                        <div class="product-info">
+                            <h3>Tas Gunung</h3>
+                            <p>Kuat dan tahan lama untuk aktivitas outdoor maupun sehari-hari. Bahan waterproof dengan banyak kompartemen penyimpanan.</p>
+                            <div class="product-price">
+                                <span class="original-price">Rp 95.000</span>
+                                <span class="discounted-price">Rp 45.000</span>
+                                <span class="discount-badge">-53%</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="product-btn order-btn">Pesan</button>
+                                <button class="product-btn ask-btn">Tanya Harga</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- New Product: Kacamata -->
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Kacamata Hitam Pria">
+                        </div>
+                        <div class="product-info">
+                            <h3>Kacamata Hitam</h3>
+                            <p>Stylish dan trendy dengan berbagai model terbaru. Lensa UV400 yang melindungi mata dari sinar matahari.</p>
+                            <div class="product-price">
+                                <span class="original-price">Rp 40.000</span>
+                                <span class="discounted-price">Rp 20.000</span>
+                                <span class="discount-badge">-50%</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="product-btn order-btn">Pesan</button>
+                                <button class="product-btn ask-btn">Tanya Harga</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- New Product: Topi Pria -->
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://images.unsplash.com/photo-1534215754734-18e55d13e346?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Topi Pria">
+                        </div>
+                        <div class="product-info">
+                            <h3>Topi Pria</h3>
+                            <p>Pelengkap gaya dengan berbagai model casual. Bahan nyaman dan desain yang stylish untuk penampilan maksimal.</p>
+                            <div class="product-price">
+                                <span class="original-price">Rp 50.000</span>
+                                <span class="discounted-price">Rp 35.000</span>
+                                <span class="discount-badge">-30%</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="product-btn order-btn">Pesan</button>
+                                <button class="product-btn ask-btn">Tanya Harga</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- New Product: Sepatu -->
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Sepatu Pria">
+                        </div>
+                        <div class="product-info">
+                            <h3>Sepatu Sneakers</h3>
+                            <p>Nyaman dipakai sehari-hari dengan desain modern dan bahan berkualitas tinggi.</p>
+                            <div class="product-price">
+                                <span class="original-price">Rp 200.000</span>
+                                <span class="discounted-price">Rp 120.000</span>
+                                <span class="discount-badge">-40%</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="product-btn order-btn">Pesan</button>
+                                <button class="product-btn ask-btn">Tanya Harga</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Section -->
+                <div class="reviews-container">
+                    <h2 style="text-align: center; margin-bottom: 30px;">Ulasan Pelanggan</h2>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Randy" class="review-avatar">
+                            <div>
+                                <div class="review-name">Randy</div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="review-text">"Kualitas produk sangat bagus, bahan kaosnya nyaman dipakai. Harganya juga sangat terjangkau untuk kualitas seperti ini. Pasti akan belanja lagi di sini!"</p>
+                        <div class="review-date">15 Juni 2025</div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Dika" class="review-avatar">
+                            <div>
+                                <div class="review-name">Dika</div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="review-text">"Jaket yang saya beli kualitasnya sangat premium, padahal harganya murah. Pengiriman cepat dan packing rapi. Sangat recommended!"</p>
+                        <div class="review-date">10 Juni 2025</div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Fahmi" class="review-avatar">
+                            <div>
+                                <div class="review-name">Fahmi</div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="review-text">"Kemeja yang saya dapatkan sangat bagus, jahitannya rapi dan bahannya adem. Pelayanannya juga ramah dan responsif. 5 bintang!"</p>
+                        <div class="review-date">5 Juni 2025</div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Andi" class="review-avatar">
+                            <div>
+                                <div class="review-name">Andi</div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="review-text">"Sepatu yang saya beli kualitasnya sangat bagus, nyaman dipakai seharian. Harganya jauh lebih murah dibanding toko lain dengan kualitas yang sama."</p>
+                        <div class="review-date">28 Mei 2025</div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <img src="https://randomuser.me/api/portraits/men/19.jpg" alt="Budi" class="review-avatar">
+                            <div>
+                                <div class="review-name">Budi</div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="review-text">"Celana jeans yang saya dapatkan sangat nyaman dan bahan tebal. Ukurannya pas sesuai yang di deskripsi. Sangat puas dengan pembelian ini!"</p>
+                        <div class="review-date">20 Mei 2025</div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Rizky" class="review-avatar">
+                            <div>
+                                <div class="review-name">Rizky</div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="review-text">"Hoodie-nya sangat nyaman dan desainnya keren. Bahan dalamnya lembut dan hangat. Pengiriman cepat dan gratis ongkir pula. Mantap!"</p>
+                        <div class="review-date">15 Mei 2025</div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <img src="https://randomuser.me/api/portraits/men/38.jpg" alt="Hendra" class="review-avatar">
+                            <div>
+                                <div class="review-name">Hendra</div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="review-text">"Kacamata yang saya beli kualitasnya premium, lensanya tidak mudah tergores. Harganya sangat murah untuk kualitas seperti ini. Recommended!"</p>
+                        <div class="review-date">10 Mei 2025</div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <img src="https://randomuser.me/api/portraits/men/64.jpg" alt="Agung" class="review-avatar">
+                            <div>
+                                <div class="review-name">Agung</div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="review-text">"Tas gunungnya sangat kokoh dan banyak kompartemen. Sudah dipakai hiking dan sangat nyaman. Harganya juga sangat terjangkau."</p>
+                        <div class="review-date">5 Mei 2025</div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <img src="https://randomuser.me/api/portraits/men/29.jpg" alt="Doni" class="review-avatar">
+                            <div>
+                                <div class="review-name">Doni</div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="review-text">"Topinya sangat stylish dan bahannya nyaman dipakai. Cocok untuk berbagai gaya. Pelayanan CS juga sangat ramah dan membantu."</p>
+                        <div class="review-date">28 April 2025</div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <img src="https://randomuser.me/api/portraits/men/71.jpg" alt="Rian" class="review-avatar">
+                            <div>
+                                <div class="review-name">Rian</div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="review-text">"Sudah beberapa kali belanja di sini dan selalu puas dengan produknya. Kualitas selalu konsisten baik dengan harga yang sangat bersaing."</p>
+                        <div class="review-date">20 April 2025</div>
+                    </div>
+                </div>
+
+                <!-- Form Ulasan -->
+                <div class="review-form">
+                    <h3>Berikan Ulasan Anda</h3>
+                    <form id="reviewForm">
+                        <div class="form-group">
+                            <label for="reviewName">Nama Anda</label>
+                            <input type="text" id="reviewName" name="reviewName" placeholder="Masukkan nama Anda" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reviewEmail">Email</label>
+                            <input type="email" id="reviewEmail" name="reviewEmail" placeholder="Masukkan email Anda" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Rating</label>
+                            <div class="rating-stars" id="ratingStars">
+                                <i class="fas fa-star" data-rating="1"></i>
+                                <i class="fas fa-star" data-rating="2"></i>
+                                <i class="fas fa-star" data-rating="3"></i>
+                                <i class="fas fa-star" data-rating="4"></i>
+                                <i class="fas fa-star" data-rating="5"></i>
+                            </div>
+                            <input type="hidden" id="ratingValue" name="ratingValue" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="reviewText">Ulasan Anda</label>
+                            <textarea id="reviewText" name="reviewText" placeholder="Bagikan pengalaman Anda tentang produk ini" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-review">Kirim Ulasan</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section class="page" id="about">
+            <div class="container">
+                <h2>Tentang Fahmi Thrifting</h2>
+                <p style="text-align: center; margin-bottom: 30px;">Mengenal lebih dekat dengan perjalanan dan filosofi kami</p>
+                
+                <div class="about-content">
+                    <div class="about-gallery">
+                        <div class="about-img">
+                            <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Pria sedang thrifting">
+                        </div>
+                        <div class="about-img">
+                            <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Toko thrift estetik">
+                        </div>
+                        <div class="about-img">
+                            <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Produk thrift berkualitas">
+                        </div>
+                    </div>
+                    
+                    <div class="about-text">
+                        <h2>Fashion Man: Gaya Elegan dengan Harga Terjangkau</h2>
+                        <p>Fahmi Thrifting didirikan pada tahun 2023 oleh Syazidan Fahmi dan Saiful Fahmi dengan misi menyediakan pakaian berkualitas tinggi dengan harga yang terjangkau untuk pria modern.</p>
+                        <p>Kami percaya bahwa setiap pria berhak tampil stylish tanpa harus mengorbankan kenyamanan atau keuangan mereka. Dengan kurasi yang ketat, kami memastikan setiap produk yang kami tawarkan memenuhi standar kualitas tinggi.</p>
+                        <p>Gaya bukanlah tentang harga, melainkan tentang bagaimana Anda memadupadankan dan mengekspresikan diri Anda. Itulah filosofi yang kami pegang teguh di Fahmi Thrifting.</p>
+                        
+                        <div class="journey">
+                            <h3>Perjalanan Kami</h3>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-date">1</div>
+                                    <div class="timeline-content">
+                                        <h4>Pendirian (2023)</h4>
+                                        <p>Fahmi Thrifting didirikan dengan modal kecil dan semangat besar. Dimulai dari menjual barang thrift berkualitas di marketplace dan media sosial.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-date">2</div>
+                                    <div class="timeline-content">
+                                        <h4>Peluncuran Toko Fisik (2024)</h4>
+                                        <p>Setelah setahun beroperasi online, kami membuka toko fisik pertama di Cilegon dengan konsep thrift store yang modern dan nyaman.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-date">3</div>
+                                    <div class="timeline-content">
+                                        <h4>1000 Pelanggan (2024)</h4>
+                                        <p>Di pertengahan 2024, kami mencapai milestone 1000 pelanggan setia yang terus mendukung perkembangan bisnis kami.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-date">4</div>
+                                    <div class="timeline-content">
+                                        <h4>Ekspansi Produk (2025)</h4>
+                                        <p>Kami memperluas lini produk tidak hanya pakaian, tetapi juga aksesoris dan perlengkapan fashion pria lainnya.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-date">5</div>
+                                    <div class="timeline-content">
+                                        <h4>Website Terbaru (2025)</h4>
+                                        <p>Meluncurkan website terbaru dengan pengalaman belanja online yang lebih baik dan fitur yang lebih lengkap untuk pelanggan kami.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stats">
+                            <div class="stat-item">
+                                <div class="stat-number">500+</div>
+                                <div class="stat-label">Produk</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">2K+</div>
+                                <div class="stat-label">Pelanggan</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">98%</div>
+                                <div class="stat-label">Kepuasan</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Order Page -->
+        <section class="page" id="order">
+            <div class="container">
+                <h2>Form Pemesanan</h2>
+                <p style="text-align: center; margin-bottom: 30px;">Isi form berikut untuk memesan produk favorit Anda</p>
+                
+                <form class="order-form">
+                    <div class="form-group">
+                        <label for="name">Nama Lengkap</label>
+                        <input type="text" id="name" name="name" placeholder="Masukkan nama lengkap Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Alamat Lengkap</label>
+                        <textarea id="address" name="address" placeholder="Masukkan alamat pengiriman lengkap" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Nomor Telepon/WhatsApp</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Contoh: 081234567890" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="institution">Asal Instansi (Opsional)</label>
+                        <input type="text" id="institution" name="institution" placeholder="Nama sekolah/kampus/perusahaan">
+                    </div>
+                    <div class="form-group">
+                        <label for="product">Produk yang Dipesan</label>
+                        <select id="product" name="product" required>
+                            <option value="">-- Pilih Produk --</option>
+                            <option value="kaos">Kaos Distro Pria - Rp 45.000 (Diskon dari <del>Rp 80.000</del>)</option>
+                            <option value="kemeja">Kemeja Pria - Rp 85.000 (Diskon dari <del>Rp 150.000</del>)</option>
+                            <option value="hoodie">Hoodie Pria - Rp 75.000 (Diskon dari <del>Rp 120.000</del>)</option>
+                            <option value="jaket">Jaket Pria - Rp 70.000 (Diskon dari <del>Rp 100.000</del>)</option>
+                            <option value="celana">Celana Pria - Rp 65.000 (Diskon dari <del>Rp 120.000</del>)</option>
+                            <option value="sepatu">Sepatu Pria - Rp 110.000 (Diskon dari <del>Rp 284.000</del>)</option>
+                            <option value="tas">Tas Gunung - Rp 45.000 (Diskon dari <del>Rp 95.000</del>)</option>
+                            <option value="kacamata">Kacamata Hitam - Rp 20.000 (Diskon dari <del>Rp 40.000</del>)</option>
+                            <option value="topi">Topi Pria - Rp 35.000 (Diskon dari <del>Rp 50.000</del>)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="size">Ukuran</label>
+                        <select id="size" name="size" required>
+                            <option value="">-- Pilih Ukuran --</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                            <option value="ONE SIZE">ONE SIZE (untuk aksesoris)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Jumlah</label>
+                        <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Catatan Tambahan (Opsional)</label>
+                        <textarea id="notes" name="notes" placeholder="Warna khusus, detail tambahan, dll."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Rating Kepuasan Anda</label>
+                        <div class="satisfaction-rating">
+                            <label class="rating-option">
+                                <input type="radio" name="satisfaction" value="happy">
+                                <span class="rating-emoji">😊</span>
+                                <span>Senang</span>
+                            </label>
+                            <label class="rating-option">
+                                <input type="radio" name="satisfaction" value="neutral">
+                                <span class="rating-emoji">😐</span>
+                                <span>Biasa Saja</span>
+                            </label>
+                            <label class="rating-option">
+                                <input type="radio" name="satisfaction" value="sad">
+                                <span class="rating-emoji">😞</span>
+                                <span>Kecewa</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="submit-btn">Pesan Sekarang <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section class="page" id="contact">
+            <div class="container">
+                <h2>Hubungi Kami</h2>
+                <p style="text-align: center; margin-bottom: 30px;">Kami selalu siap membantu Anda</p>
+                
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <i class="fab fa-whatsapp" style="color: #25D366;"></i>
+                        <h3>WhatsApp</h3>
+                        <p><a href="https://wa.me/6289627393989">0896-2739-3989 (Zidan)</a></p>
+                        <p><a href="https://wa.me/6285939958484">0859-3995-8484 (Saiful)</a></p>
+                        
+                        <div class="social-links">
+                            <a href="https://wa.me/6289627393989" class="whatsapp-icon" title="WhatsApp Zidan"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://wa.me/6285939958484" class="whatsapp-icon" title="WhatsApp Saiful"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fab fa-instagram" style="color: #E1306C;"></i>
+                        <h3>Instagram</h3>
+                        <p><a href="https://www.instagram.com/sfhmi2101/?hl=en" target="_blank">@sfhmi2101</a></p>
+                        <p><a href="https://www.instagram.com/sfhmi2101/?hl=en" target="_blank">@fahmithrift</a></p>
+                        
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/sfhmi2101/?hl=en" target="_blank" class="instagram-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fas fa-envelope" style="background: linear-gradient(45deg, #4285F4, #EA4335); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                        <h3>Email & Lokasi</h3>
+                        <p><a href="mailto:sfhmi2106@gmail.com">sfhmi2106@gmail.com</a></p>
+                        <p><a href="https://goo.gl/maps/example" target="_blank">SMP Muhammadiyah Cilegon</a></p>
+                        
+                        <div class="social-links">
+                            <a href="mailto:sfhmi2106@gmail.com" class="email-icon" title="Email"><i class="fas fa-envelope"></i></a>
+                            <a href="https://goo.gl/maps/example" target="_blank" class="location-icon" title="Lokasi"><i class="fas fa-map-marker-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.037269885997!2d106.01121331476898!3d-6.120161995565009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e418a9f5a0e5a3f%3A0x1a3b3b3b3b3b3b3b!2sSMP%20Muhammadiyah%20Cilegon!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Spin Wheel Game Modal -->
+    <div class="wheel-container" id="wheelContainer">
+        <div class="wheel-content">
+            <h2>Spin Wheel Game</h2>
+            <p>Putar roda untuk mendapatkan diskon spesial!</p>
+            
+            <div class="wheel" id="wheel">
+                <div class="wheel-item" style="transform: rotate(0deg) skewY(-60deg); background: #6e45e2;">
+                    <div>DISKON 50%</div>
+                </div>
+                <div class="wheel-item" style="transform: rotate(60deg) skewY(-60deg); background: #89d4cf;">
+                    <div>GRATIS ONGKIR</div>
+                </div>
+                <div class="wheel-item" style="transform: rotate(120deg) skewY(-60deg); background: #ff6b6b;">
+                    <div>COIN 1000</div>
+                </div>
+                <div class="wheel-item" style="transform: rotate(180deg) skewY(-60deg); background: #3a5a78;">
+                    <div>POTONGAN 2000</div>
+                </div>
+                <div class="wheel-item" style="transform: rotate(240deg) skewY(-60deg); background: #ffd166;">
+                    <div>COIN 500</div>
+                </div>
+                <div class="wheel-item" style="transform: rotate(300deg) skewY(-60deg); background: #25D366;">
+                    <div>DISKON 30%</div>
+                </div>
+                <div class="wheel-pointer"></div>
+            </div>
+            
+            <button class="spin-btn" id="spinBtn">Putar Roda!</button>
+            <button class="spin-btn" id="closeWheel" style="background: #ff6b6b; margin-top: 10px;">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Mystery Box Game Modal -->
+    <div class="mystery-box-container" id="mysteryBoxContainer">
+        <div class="mystery-box-content">
+            <h2>Mystery Box Belanja</h2>
+            <p>Setelah belanja minimal Rp50.000, Anda berhak membuka 1 kotak misteri!</p>
+            
+            <div class="box-grid" id="boxGrid">
+                <div class="mystery-box" data-box="1">
+                    <i class="fas fa-gift"></i>
+                    <div class="mystery-box-prize">
+                        <i class="fas fa-question"></i>
+                        <span>?</span>
+                    </div>
+                </div>
+                <div class="mystery-box" data-box="2">
+                    <i class="fas fa-gift"></i>
+                    <div class="mystery-box-prize">
+                        <i class="fas fa-question"></i>
+                        <span>?</span>
+                    </div>
+                </div>
+                <div class="mystery-box" data-box="3">
+                    <i class="fas fa-gift"></i>
+                    <div class="mystery-box-prize">
+                        <i class="fas fa-question"></i>
+                        <span>?</span>
+                    </div>
+                </div>
+                <div class="mystery-box" data-box="4">
+                    <i class="fas fa-gift"></i>
+                    <div class="mystery-box-prize">
+                        <i class="fas fa-question"></i>
+                        <span>?</span>
+                    </div>
+                </div>
+                <div class="mystery-box" data-box="5">
+                    <i class="fas fa-gift"></i>
+                    <div class="mystery-box-prize">
+                        <i class="fas fa-question"></i>
+                        <span>?</span>
+                    </div>
+                </div>
+                <div class="mystery-box" data-box="6">
+                    <i class="fas fa-gift"></i>
+                    <div class="mystery-box-prize">
+                        <i class="fas fa-question"></i>
+                        <span>?</span>
+                    </div>
+                </div>
+                <div class="mystery-box" data-box="7">
+                    <i class="fas fa-gift"></i>
+                    <div class="mystery-box-prize">
+                        <i class="fas fa-question"></i>
+                        <span>?</span>
+                    </div>
+                </div>
+                <div class="mystery-box" data-box="8">
+                    <i class="fas fa-gift"></i>
+                    <div class="mystery-box-prize">
+                        <i class="fas fa-question"></i>
+                        <span>?</span>
+                    </div>
+                </div>
+                <div class="mystery-box" data-box="9">
+                    <i class="fas fa-gift"></i>
+                    <div class="mystery-box-prize">
+                        <i class="fas fa-question"></i>
+                        <span>?</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="prize-display" id="mysteryPrizeDisplay">
+                Pilih 1 kotak misteri untuk melihat hadiah Anda!
+            </div>
+            
+            <button class="spin-btn" id="closeMysteryBox" style="background: #ff6b6b; margin-top: 10px;">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Daily Mission Game Modal -->
+    <div class="daily-mission-container" id="dailyMissionContainer">
+        <div class="daily-mission-content">
+            <h2>Daily Mission</h2>
+            <p>Selesaikan misi harian untuk mendapatkan reward spesial!</p>
+            
+            <div class="mission-card">
+                <div class="mission-title">
+                    <i class="fas fa-eye"></i>
+                    <span>Lihat Produk</span>
+                </div>
+                <div class="mission-description">
+                    Lihat 5 produk dari kategori pakaian untuk menyelesaikan misi ini.
+                </div>
+                <div class="mission-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="viewProgress" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text" id="viewProgressText">0/5</div>
+                </div>
+                <div class="mission-reward">
+                    <i class="fas fa-gift"></i>
+                    <span>Hadiah: Voucher Rp10.000</span>
+                </div>
+                <div class="mission-complete" id="viewComplete">SELESAI!</div>
+            </div>
+            
+            <div class="mission-card">
+                <div class="mission-title">
+                    <i class="fas fa-heart"></i>
+                    <span>Wishlist</span>
+                </div>
+                <div class="mission-description">
+                    Tambahkan 3 produk ke wishlist Anda untuk menyelesaikan misi ini.
+                </div>
+                <div class="mission-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="wishlistProgress" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text" id="wishlistProgressText">0/3</div>
+                </div>
+                <div class="mission-reward">
+                    <i class="fas fa-gift"></i>
+                    <span>Hadiah: Diskon 5%</span>
+                </div>
+                <div class="mission-complete" id="wishlistComplete">SELESAI!</div>
+            </div>
+            
+            <div class="mission-card">
+                <div class="mission-title">
+                    <i class="fas fa-share-alt"></i>
+                    <span>Share Produk</span>
+                </div>
+                <div class="mission-description">
+                    Bagikan 1 produk ke teman Anda melalui media sosial.
+                </div>
+                <div class="mission-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="shareProgress" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text" id="shareProgressText">0/1</div>
+                </div>
+                <div class="mission-reward">
+                    <i class="fas fa-gift"></i>
+                    <span>Hadiah: Gratis Ongkir</span>
+                </div>
+                <div class="mission-complete" id="shareComplete">SELESAI!</div>
+            </div>
+            
+            <div class="mission-card">
+                <div class="mission-title">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Belanja</span>
+                </div>
+                <div class="mission-description">
+                    Lakukan pembelian minimal Rp50.000 untuk menyelesaikan misi ini.
+                </div>
+                <div class="mission-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="purchaseProgress" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text" id="purchaseProgressText">Rp0/Rp50.000</div>
+                </div>
+                <div class="mission-reward">
+                    <i class="fas fa-gift"></i>
+                    <span>Hadiah: Cashback Rp15.000</span>
+                </div>
+                <div class="mission-complete" id="purchaseComplete">SELESAI!</div>
+            </div>
+            
+            <button class="spin-btn" id="closeDailyMission" style="background: #ff6b6b; margin-top: 10px;">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Guess Item Game Modal -->
+    <div class="guess-item-container" id="guessItemContainer">
+        <div class="guess-item-content">
+            <h2>Guess Item Game</h2>
+            <p>Gunakan capit untuk mengambil hadiah misteri!</p>
+            
+            <div class="claw-machine">
+                <div class="claw" id="claw"></div>
+                <div class="claw-line"></div>
+            </div>
+            
+            <div class="prize-items">
+                <div class="prize-item" data-prize="celana">
+                    <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Celana">
+                    <div class="prize-name">Misteri</div>
+                </div>
+                <div class="prize-item" data-prize="kacamata">
+                    <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Kacamata">
+                    <div class="prize-name">Misteri</div>
+                </div>
+                <div class="prize-item" data-prize="topi">
+                    <img src="https://images.unsplash.com/photo-1534215754734-18e55d13e346?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Topi">
+                    <div class="prize-name">Misteri</div>
+                </div>
+                <div class="prize-item" data-prize="kemeja">
+                    <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Kemeja">
+                    <div class="prize-name">Misteri</div>
+                </div>
+                <div class="prize-item" data-prize="kaos">
+                    <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Kaos">
+                    <div class="prize-name">Misteri</div>
+                </div>
+                <div class="prize-item" data-prize="zonk">
+                    <div>?</div>
+                    <div class="prize-name">Misteri</div>
+                </div>
+                <div class="prize-item" data-prize="zonk">
+                    <div>?</div>
+                    <div class="prize-name">Misteri</div>
+                </div>
+                <div class="prize-item" data-prize="zonk">
+                    <div>?</div>
+                    <div class="prize-name">Misteri</div>
+                </div>
+            </div>
+            
+            <button class="spin-btn" id="grabBtn">Gunakan Capit</button>
+            <button class="spin-btn" id="closeGuessItem" style="background: #ff6b6b; margin-top: 10px;">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <span>Treasures</span>Thrifting
+            </div>
+            <p>Gaya Elegan dengan Harga Terjangkau untuk Pria Modern</p>
+            <p class="copyright">Copyright &copy; 2025 Fahmi Thrifting. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation between pages
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            
+            // Hide all pages except home
+            pages.forEach(page => {
+                if (!page.classList.contains('active')) {
+                    page.style.display = 'none';
+                }
+            });
+            
+            // Handle navigation clicks
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetPage = this.getAttribute('data-page');
+                    
+                    // Hide all pages
+                    pages.forEach(page => {
+                        page.classList.remove('active');
+                        page.style.display = 'none';
+                    });
+                    
+                    // Show target page
+                    document.getElementById(targetPage).classList.add('active');
+                    document.getElementById(targetPage).style.display = 'block';
+                    
+                    // Scroll to top
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Form submission
+            const orderForm = document.querySelector('.order-form');
+            if (orderForm) {
+                orderForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Terima kasih! Pesanan Anda telah diterima. Kami akan segera menghubungi Anda untuk konfirmasi.');
+                    this.reset();
+                });
+            }
+            
+            // Product buttons functionality
+            const orderButtons = document.querySelectorAll('.order-btn');
+            orderButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: document.getElementById('order').offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    document.querySelectorAll('.page').forEach(page => {
+                        page.classList.remove('active');
+                        page.style.display = 'none';
+                    });
+                    document.getElementById('order').classList.add('active');
+                    document.getElementById('order').style.display = 'block';
+                });
+            });
+            
+            const askButtons = document.querySelectorAll('.ask-btn');
+            askButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: document.getElementById('contact').offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    document.querySelectorAll('.page').forEach(page => {
+                        page.classList.remove('active');
+                        page.style.display = 'none';
+                    });
+                    document.getElementById('contact').classList.add('active');
+                    document.getElementById('contact').style.display = 'block';
+                });
+            });
+            
+            // Add animation to all icons on hover
+            const allIcons = document.querySelectorAll('i');
+            allIcons.forEach(icon => {
+                icon.style.transition = 'all 0.3s ease';
+                icon.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.2) rotate(10deg)';
+                });
+                icon.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1) rotate(0deg)';
+                });
+            });
+            
+            // Rating emoji selection
+            const ratingOptions = document.querySelectorAll('.rating-option input[type="radio"]');
+            ratingOptions.forEach(option => {
+                option.addEventListener('change', function() {
+                    const emoji = this.nextElementSibling;
+                    emoji.style.transform = 'scale(1.3)';
+                    emoji.style.textShadow = '0 0 10px rgba(110, 69, 226, 0.5)';
+                    
+                    // Reset other emojis
+                    ratingOptions.forEach(otherOption => {
+                        if (otherOption !== this) {
+                            otherOption.nextElementSibling.style.transform = 'scale(1)';
+                            otherOption.nextElementSibling.style.textShadow = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Flash Sale Countdown
+            function updateCountdown() {
+                const now = new Date();
+                const endOfDay = new Date();
+                endOfDay.setHours(23, 59, 59, 0);
+                
+                const diff = endOfDay - now;
+                
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }
+            
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+            
+            // Spin Wheel Game
+            const spinWheelGame = document.getElementById('spin-wheel-game');
+            const wheelContainer = document.getElementById('wheelContainer');
+            const spinBtn = document.getElementById('spinBtn');
+            const closeWheel = document.getElementById('closeWheel');
+            const wheel = document.getElementById('wheel');
+            
+            let isSpinning = false;
+            let currentRotation = 0;
+            
+            spinWheelGame.addEventListener('click', function() {
+                wheelContainer.style.display = 'flex';
+            });
+            
+            closeWheel.addEventListener('click', function() {
+                wheelContainer.style.display = 'none';
+            });
+            
+            spinBtn.addEventListener('click', function() {
+                if (isSpinning) return;
+                
+                isSpinning = true;
+                const spinDegrees = 1800 + Math.floor(Math.random() * 360);
+                currentRotation += spinDegrees;
+                
+                wheel.style.transition = 'transform 5s cubic-bezier(0.17, 0.67, 0.21, 0.99)';
+                wheel.style.transform = `rotate(${currentRotation}deg)`;
+                
+                setTimeout(() => {
+                    isSpinning = false;
+                    const winningSegment = Math.floor((currentRotation % 360) / 60);
+                    const prizes = ['DISKON 50%', 'GRATIS ONGKIR', 'COIN 1000', 'POTONGAN 2000', 'COIN 500', 'DISKON 30%'];
+                    alert(`Selamat! Anda mendapatkan: ${prizes[winningSegment]}`);
+                }, 5000);
+            });
+            
+            // Mystery Box Game
+            const mysteryBoxGame = document.getElementById('mystery-box-game');
+            const mysteryBoxContainer = document.getElementById('mysteryBoxContainer');
+            const mysteryBoxes = document.querySelectorAll('.mystery-box');
+            const mysteryPrizeDisplay = document.getElementById('mysteryPrizeDisplay');
+            const closeMysteryBox = document.getElementById('closeMysteryBox');
+            
+            // Possible prizes for mystery box
+            const mysteryPrizes = [
+                { name: 'VOUCHER RP 25.000', icon: 'fa-money-bill-wave', color: '#25D366' },
+                { name: 'DISKON 15%', icon: 'fa-percentage', color: '#6e45e2' },
+                { name: 'GRATIS ONGKIR', icon: 'fa-truck', color: '#89d4cf' },
+                { name: 'KAOS GRATIS', icon: 'fa-tshirt', color: '#ff6b6b' },
+                { name: 'CASHBACK RP 10.000', icon: 'fa-wallet', color: '#ffd166' },
+                { name: 'ZONK! Coba lagi besok', icon: 'fa-sad-tear', color: '#3a5a78' },
+                { name: 'DISKON 20%', icon: 'fa-percentage', color: '#6e45e2' },
+                { name: 'VOUCHER RP 15.000', icon: 'fa-money-bill-wave', color: '#25D366' },
+                { name: 'TOPSTER GRATIS', icon: 'fa-tshirt', color: '#ff6b6b' }
+            ];
+            
+            mysteryBoxGame.addEventListener('click', function() {
+                // Check if user has made a purchase (simulated)
+                const hasPurchased = confirm('Anda telah belanja minimal Rp50.000 dan berhak membuka 1 kotak misteri. Lanjutkan?');
+                
+                if (hasPurchased) {
+                    mysteryBoxContainer.style.display = 'flex';
+                    mysteryPrizeDisplay.textContent = 'Pilih 1 kotak misteri untuk melihat hadiah Anda!';
+                    
+                    // Reset all boxes
+                    mysteryBoxes.forEach(box => {
+                        box.classList.remove('opened');
+                        const prizeElement = box.querySelector('.mystery-box-prize');
+                        prizeElement.innerHTML = '<i class="fas fa-question"></i><span>?</span>';
+                    });
+                } else {
+                    alert('Anda perlu belanja minimal Rp50.000 untuk membuka kotak misteri.');
+                }
+            });
+            
+            closeMysteryBox.addEventListener('click', function() {
+                mysteryBoxContainer.style.display = 'none';
+            });
+            
+            mysteryBoxes.forEach(box => {
+                box.addEventListener('click', function() {
+                    if (this.classList.contains('opened')) return;
+                    
+                    // Open the box
+                    this.classList.add('opened');
+                    
+                    // Get random prize
+                    const randomIndex = Math.floor(Math.random() * mysteryPrizes.length);
+                    const prize = mysteryPrizes[randomIndex];
+                    
+                    // Update prize display
+                    const prizeElement = this.querySelector('.mystery-box-prize');
+                    prizeElement.innerHTML = `<i class="fas ${prize.icon}" style="color: ${prize.color}"></i><span>${prize.name}</span>`;
+                    
+                    // Show prize message
+                    mysteryPrizeDisplay.innerHTML = `Selamat! Anda mendapatkan: <strong>${prize.name}</strong>`;
+                });
+            });
+            
+            // Daily Mission Game
+            const dailyMissionGame = document.getElementById('daily-mission-game');
+            const dailyMissionContainer = document.getElementById('dailyMissionContainer');
+            const closeDailyMission = document.getElementById('closeDailyMission');
+            
+            // Mission progress variables
+            let viewedProducts = 0;
+            let wishlistItems = 0;
+            let sharedProducts = 0;
+            let purchaseAmount = 0;
+            
+            dailyMissionGame.addEventListener('click', function() {
+                dailyMissionContainer.style.display = 'flex';
+                updateMissionProgress();
+            });
+            
+            closeDailyMission.addEventListener('click', function() {
+                dailyMissionContainer.style.display = 'none';
+            });
+            
+            // Simulate mission progress (in a real app, this would be tracked based on user actions)
+            function updateMissionProgress() {
+                // Random progress for demo purposes
+                viewedProducts = Math.min(5, viewedProducts + Math.floor(Math.random() * 2));
+                wishlistItems = Math.min(3, wishlistItems + Math.floor(Math.random()));
+                sharedProducts = Math.min(1, sharedProducts + Math.floor(Math.random()));
+                purchaseAmount = Math.min(50000, purchaseAmount + Math.floor(Math.random() * 15000));
+                
+                // Update progress bars
+                document.getElementById('viewProgress').style.width = `${(viewedProducts / 5) * 100}%`;
+                document.getElementById('viewProgressText').textContent = `${viewedProducts}/5`;
+                
+                document.getElementById('wishlistProgress').style.width = `${(wishlistItems / 3) * 100}%`;
+                document.getElementById('wishlistProgressText').textContent = `${wishlistItems}/3`;
+                
+                document.getElementById('shareProgress').style.width = `${(sharedProducts / 1) * 100}%`;
+                document.getElementById('shareProgressText').textContent = `${sharedProducts}/1`;
+                
+                document.getElementById('purchaseProgress').style.width = `${(purchaseAmount / 50000) * 100}%`;
+                document.getElementById('purchaseProgressText').textContent = `Rp${purchaseAmount.toLocaleString()}/Rp50.000`;
+                
+                // Check if missions are complete
+                if (viewedProducts >= 5) {
+                    document.getElementById('viewComplete').style.display = 'block';
+                }
+                if (wishlistItems >= 3) {
+                    document.getElementById('wishlistComplete').style.display = 'block';
+                }
+                if (sharedProducts >= 1) {
+                    document.getElementById('shareComplete').style.display = 'block';
+                }
+                if (purchaseAmount >= 50000) {
+                    document.getElementById('purchaseComplete').style.display = 'block';
+                }
+            }
+            
+            // Guess Item Game
+            const guessItemGame = document.getElementById('guess-item-game');
+            const guessItemContainer = document.getElementById('guessItemContainer');
+            const claw = document.getElementById('claw');
+            const grabBtn = document.getElementById('grabBtn');
+            const closeGuessItem = document.getElementById('closeGuessItem');
+            const prizeItems = document.querySelectorAll('.prize-item');
+            
+            guessItemGame.addEventListener('click', function() {
+                guessItemContainer.style.display = 'flex';
+            });
+            
+            closeGuessItem.addEventListener('click', function() {
+                guessItemContainer.style.display = 'none';
+                // Reset claw position
+                claw.style.top = '20px';
+            });
+            
+            grabBtn.addEventListener('click', function() {
+                // Animate claw dropping
+                claw.style.top = '250px';
+                
+                setTimeout(() => {
+                    // Randomly select a prize (with higher chance for zonk)
+                    const prizes = [
+                        { name: 'Celana Pria', value: 'celana', weight: 10 },
+                        { name: 'Kacamata Hitam', value: 'kacamata', weight: 10 },
+                        { name: 'Topi Pria', value: 'topi', weight: 10 },
+                        { name: 'Kemeja Pria', value: 'kemeja', weight: 10 },
+                        { name: 'Kaos Distro', value: 'kaos', weight: 10 },
+                        { name: 'Zonk! Coba lagi', value: 'zonk', weight: 50 }
+                    ];
+                    
+                    const totalWeight = prizes.reduce((sum, prize) => sum + prize.weight, 0);
+                    let random = Math.random() * totalWeight;
+                    let prizeIndex = 0;
+                    let weightSum = prizes[0].weight;
+                    
+                    while (random > weightSum) {
+                        prizeIndex++;
+                        weightSum += prizes[prizeIndex].weight;
+                    }
+                    
+                    const wonPrize = prizes[prizeIndex];
+                    
+                    // Animate claw coming back up
+                    claw.style.top = '20px';
+                    
+                    setTimeout(() => {
+                        if (wonPrize.value === 'zonk') {
+                            alert('Zonk! Sayang sekali, coba lagi ya!');
+                        } else {
+                            alert(`Selamat! Anda mendapatkan: ${wonPrize.name}`);
+                        }
+                    }, 1000);
+                }, 1000);
+            });
+
+            // Review Form
+            const reviewForm = document.getElementById('reviewForm');
+            const ratingStars = document.getElementById('ratingStars');
+            const stars = ratingStars.querySelectorAll('.fa-star');
+            const ratingValue = document.getElementById('ratingValue');
+
+            // Star rating functionality
+            stars.forEach(star => {
+                star.addEventListener('click', function() {
+                    const rating = parseInt(this.getAttribute('data-rating'));
+                    ratingValue.value = rating;
+                    
+                    stars.forEach((s, index) => {
+                        if (index < rating) {
+                            s.classList.add('active');
+                        } else {
+                            s.classList.remove('active');
+                        }
+                    });
+                });
+            });
+
+            // Review form submission
+            if (reviewForm) {
+                reviewForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const name = document.getElementById('reviewName').value;
+                    const rating = document.getElementById('ratingValue').value;
+                    
+                    if (rating === '0') {
+                        alert('Silakan berikan rating dengan mengklik bintang');
+                        return;
+                    }
+                    
+                    alert(`Terima kasih ${name} atas ulasan Anda! Rating: ${rating} bintang`);
+                    this.reset();
+                    
+                    // Reset stars
+                    stars.forEach(star => {
+                        star.classList.remove('active');
+                    });
+                    ratingValue.value = '0';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
